@@ -1,0 +1,56 @@
+name: Metrics
+on:
+  # Schedule daily updates
+  schedule: [{cron: "0 0 * * *"}]
+  workflow_dispatch:
+  push: {branches: ["master", "main"]}
+jobs:
+  github-metrics:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: lowlighter/metrics@latest
+        with:
+          token: ${{ secrets.METRICS_TOKEN }}
+          output_action: gist
+          committer_gist: ${{ vars.GIST }}
+          retries: 5
+          retries_delay: 300
+          config_output: svg
+          output_condition: data-changed
+          template: classic
+          base: header, activity, community, repositories
+          base_hireable: yes
+          base_indepth: yes
+          config_timezone: America/New_York
+          plugin_anilist: yes
+          plugin_anilist_limit: 3
+          plugin_anilist_limit_characters: 22
+          plugin_anilist_medias: anime
+          plugin_anilist_sections: favorites, watching
+          plugin_anilist_shuffle: yes
+          plugin_anilist_user: .user.login
+          plugin_isocalendar: yes
+          plugin_isocalendar_duration: half-year
+          plugin_languages: yes
+          plugin_languages_analysis_timeout: 15
+          plugin_languages_analysis_timeout_repositories: 7.5
+          plugin_languages_categories: markup, programming
+          plugin_languages_colors: github
+          plugin_languages_indepth: yes
+          plugin_languages_limit: 8
+          plugin_languages_other: yes
+          plugin_languages_recent_categories: markup, programming
+          plugin_languages_recent_days: 14
+          plugin_languages_recent_load: 300
+          plugin_languages_sections: most-used
+          plugin_languages_threshold: 40%
+          plugin_notable: yes
+          plugin_notable_filter: stars:>500 forks>100
+          plugin_notable_from: organization
+          plugin_notable_types: commit
+          plugin_topics: yes
+          plugin_topics_limit: 15
+          plugin_topics_mode: starred
+          plugin_topics_sort: stars
