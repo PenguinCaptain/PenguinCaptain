@@ -23,7 +23,7 @@ jobs:
           base: header, activity, community, repositories
           base_hireable: yes
           base_indepth: yes
-          config_timezone: America/New_York
+          config_timezone: Asia/Singapore
           plugin_anilist: yes
           plugin_anilist_limit: 3
           plugin_anilist_limit_characters: 22
@@ -38,3 +38,9 @@ jobs:
           plugin_languages_limit: 8
           plugin_languages_sections: most-used
           plugin_languages_threshold: 40%
+          plugin_steam: yes
+          plugin_steam_user: ${{ vars.STEAM_ID }}
+          plugin_steam_achievements_limit: 2
+          plugin_steam_games_ignored: 1172470
+          plugin_steam_sections: player, most-played, recently-played
+
