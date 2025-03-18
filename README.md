@@ -1,3 +1,3 @@
 <picture>
-  <img src="/github-metrics.svgg" alt="Metrics">
+  <img src="/github-metrics.svg" alt="Metrics">
 </picture>
